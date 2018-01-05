@@ -19,4 +19,4 @@ after_success:
 - ssh root@sshali.huoqishi.net 'cd chat-server && (forever stop index.js & forever
   start index.js )'
 addons:
-  ssh_known_hosts: 118.190.88.193
+  ssh_known_hosts: sshali.huoqishi.net
