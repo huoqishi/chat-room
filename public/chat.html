@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>输入用户名</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <div class="i-body">
+    <h1>What's your nickname?</h1>
+    <form>
+      <input type="text">
+    </form>
+  </div>
+</body>
+</html>
+<script src="/socket.io-client/dist/socket.io.js"></script>
+<script>
+  var socket = io()
+  socket.on('connect', function () {
+    console.log('连接建立成功!')
+  })
+  // 接收服务器通过 socket.emit('xxx',) 发来的消息
+  // 服务器端 emit 方法的参数1 需要和这里的 on 方法的参数1 相同时这里的回调才会执行。
+  socket.on('xxx', function (msg) {
+    console.log(msg)
+  })
+  
+  document.querySelector('form').onsubmit = function (e) {
+    e.preventDefault()
+    var oIpt = document.querySelector('input')
+    localStorage.setItem('username', oIpt.value)
+    oIpt.value = ''
+    location.href = './room.html'
+  }
+</script>
