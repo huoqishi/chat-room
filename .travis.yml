@@ -18,3 +18,5 @@ after_success:
   -C chat-server'
 - ssh root@alissh.huoqishi.net 'cd chat-server && (forever stop index.js & forever
   start index.js )'
+addons:
+  ssh_known_hosts: 118.190.88.193
