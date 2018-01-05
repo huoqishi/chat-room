@@ -1,6 +1,9 @@
 {
   "name": "chat-room",
   "version": "1.0.0",
+  "scripts": {
+    "test": "node index.js"
+  },
   "dependencies": {
     "express": "^4.16.2",
     "socket.io": "^2.0.4"
