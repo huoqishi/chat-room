@@ -1,7 +1,19 @@
 language: node_js
 node_js:
-  - "8"
+- '8'
 addons:
   hosts:
-    - travis.dev
-    - joshkalderimis.com
+  - travis.dev
+  - joshkalderimis.com
+before_install:
+- openssl aes-256-cbc -K $encrypted_ff617dab70d7_key -iv $encrypted_ff617dab70d7_iv
+  -in id_rsa.enc -out ~\/.ssh/id_rsa -d
+- chmod 600 ~/.ssh/id_rsa
+script:
+  - npm run test
+after_success:
+  - npm prune --production  # 删除 devDependencies
+  - tar -jcf chat-server.tar.bz2 *    # 打包并压缩代码
+  - scp chat-server.tar.bz2 root@alissh.huoqishi.net:~/  # 复制到生产服务器上
+  - ssh root@alissh.huoqishi.net 'mkdir -p chat-server && tar -jxf chat-server.tar.bz2 -C chat-server'   # 解压
+  - ssh root@alissh.huoqishi.net 'cd chat-server && (forever stop index.js & forever start index.js )'  # 重启
