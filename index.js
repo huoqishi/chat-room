@@ -9,7 +9,7 @@ const io = socketIO(server)
 app.use(express.static('./public'))
 app.use(express.static('./node_modules'))
 socketOperate(io)
-server.listen(3000, '127.0.0.1', err => {
+server.listen(8090, '127.0.0.1', err => {
   if (err) {
     return console.log(err)
   }
