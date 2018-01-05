@@ -13,12 +13,9 @@ before_install:
 script:
 - npm run test
 after_success:
-- npm prune --production
-- tar -jcf chat-server.tar.bz2 *
-- scp chat-server.tar.bz2 root@sshali.huoqishi.net:/isc/huoqishi
-- ssh root@sshali.huoqishi.net 'tar -jxf chat-server.tar.bz2
-  -C chat-room'
-- ssh root@sshali.huoqishi.net 'cd chat-room && (forever stop index.js & forever
+- npm prune --production # 删除 devDepencies
+- rsync -av --exclude ".git" --exclude "node_modules"  ./  root@sshali.huoqishi.net:/isc/huoqishi/chat-room
+- ssh root@sshali.huoqishi.net 'cd /isc/huoqishi/chat-room && npm install && (forever stop index.js & forever
   start index.js )'
 addons:
   ssh_known_hosts: 
