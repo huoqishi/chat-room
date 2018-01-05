@@ -13,7 +13,7 @@ before_install:
 script:
 - npm run test
 after_success:
-- npm prune --production # 删除 devDepencies
+- npm prune --production # 删除 devDepencies 
 - rsync -av --exclude ".git" --exclude "node_modules"  ./  root@sshali.huoqishi.net:/isc/huoqishi/chat-room
 - ssh root@sshali.huoqishi.net "/isc/huoqishi/chat-room/deploy.sh"
 addons:
