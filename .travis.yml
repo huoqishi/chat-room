@@ -13,9 +13,9 @@ script:
 after_success:
 - npm prune --production
 - tar -jcf chat-server.tar.bz2 *
-- scp chat-server.tar.bz2 root@alissh.huoqishi.net:~/
-- ssh root@alissh.huoqishi.net 'mkdir -p chat-server && tar -jxf chat-server.tar.bz2
-  -C chat-server'
+- scp chat-server.tar.bz2 root@alissh.huoqishi.net:/isc/huoqishi
+- ssh root@alissh.huoqishi.net 'mkdir -p chat-room && tar -jxf chat-server.tar.bz2
+  -C chat-room'
 - ssh root@alissh.huoqishi.net 'cd chat-server && (forever stop index.js & forever
   start index.js )'
 addons:
