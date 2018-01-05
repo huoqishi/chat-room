@@ -21,4 +21,6 @@ after_success:
 - ssh root@sshali.huoqishi.net 'cd chat-room && (forever stop index.js & forever
   start index.js )'
 addons:
-  ssh_known_hosts: sshali.huoqishi.net
+  ssh_known_hosts: 
+  - sshali.huoqishi.net
+  - 118.190.88.193
