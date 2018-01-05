@@ -15,9 +15,7 @@ script:
 after_success:
 - npm prune --production # 删除 devDepencies
 - rsync -av --exclude ".git" --exclude "node_modules"  ./  root@sshali.huoqishi.net:/isc/huoqishi/chat-room
-- ssh root@sshali.huoqishi.net "/isc/huoqishi/chat-room/test.sh"
-- cd /isc/huoqishi/chat-room&&npm install&&(forever stop index.js & forever
-  start index.js )'
+- ssh root@sshali.huoqishi.net "/isc/huoqishi/chat-room/deploy.sh"
 addons:
   ssh_known_hosts: 
   - sshali.huoqishi.net
